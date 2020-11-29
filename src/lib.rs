@@ -14,7 +14,7 @@
     clippy::cast_possible_truncation,
     clippy::cast_lossless
 )]
-#![no_std]
+#![cfg_attr(not(feature = "std"), no_std)]
 
 pub mod character;
 pub mod checked_cast;

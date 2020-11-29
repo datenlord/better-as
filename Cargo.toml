@@ -10,4 +10,6 @@ readme = "README.md"
 keywords = ["cast"]
 categories = ["rust-patterns", "no-std"]
 
-[dependencies]
+[features]
+default = ["std"]
+std = []

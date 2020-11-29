@@ -1,16 +1,34 @@
+use core::fmt::{self, Display};
+
 pub trait CheckedCast<U> {
     type Output;
 
     fn checked_cast(self) -> Self::Output;
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum NumCastError {
     Infinite,
     NaN,
     Overflow,
     Underflow,
 }
+
+impl Display for NumCastError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let msg = match *self {
+            Self::Infinite => "Cannot store infinite value in finite type",
+            Self::NaN => "Cannot store NaN in type which does not support it",
+            Self::Overflow => "Overflow during numeric conversion",
+            Self::Underflow => "Underflow during numeric conversion",
+        };
+
+        f.write_str(msg)
+    }
+}
+
+#[cfg(feature = "std")]
+impl std::error::Error for NumCastError {}
 
 macro_rules! impl_cast {
     (@trivial $($t:ty,)+) => {
