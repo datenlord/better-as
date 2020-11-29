@@ -1,0 +1,13 @@
+[package]
+name = "better-as"
+version = "0.1.0"
+authors = ["Nugine <nugine@foxmail.com>"]
+edition = "2018"
+description = "Explicit type casting"
+license = "MIT"
+repository = "https://github.com/Nugine/better-as"
+readme = "README.md"
+keywords = ["cast"]
+categories = ["rust-patterns", "no-std"]
+
+[dependencies]
